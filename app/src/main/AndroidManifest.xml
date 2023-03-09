@@ -16,8 +16,23 @@
         android:theme="@style/Theme.CanteenApp"
         tools:targetApi="31">
         <activity
+            android:name=".Ordercomplete"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Cartpagee"
+            android:exported="true"
+            android:parentActivityName=".Menupage">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Menupage"
-            android:exported="false">
+            android:exported="true">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

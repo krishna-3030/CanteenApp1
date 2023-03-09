@@ -10,7 +10,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.canteenapp.Adaptor.CategoryAdaptor;
+import com.example.canteenapp.Domain.CategoryDomain;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.TaskExecutors;
@@ -21,6 +25,7 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
@@ -28,12 +33,10 @@ public class MainActivity extends AppCompatActivity {
     // variable for FirebaseAuth class
     private FirebaseAuth mAuth;
 
+
     // variable for our text input
     // field for phone and OTP.
     private EditText edtPhone, edtOTP;
-
-    // buttons for generating OTP and verifying OTP
-    private Button verifyOTPBtn, generateOTPBtn;
 
     // string for storing our verification ID
     private String verificationId;
@@ -50,8 +53,9 @@ public class MainActivity extends AppCompatActivity {
         // initializing variables for button and Edittext.
         edtPhone = findViewById(R.id.idEdtPhoneNumber);
         edtOTP = findViewById(R.id.idEdtOtp);
-        verifyOTPBtn = findViewById(R.id.idBtnVerify);
-        generateOTPBtn = findViewById(R.id.idBtnGetOtp);
+        // buttons for generating OTP and verifying OTP
+        Button verifyOTPBtn = findViewById(R.id.idBtnVerify);
+        Button generateOTPBtn = findViewById(R.id.idBtnGetOtp);
 
         // setting onclick listener for generate OTP button.
         generateOTPBtn.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     private void signInWithCredential(PhoneAuthCredential credential) {
         // inside this method we are checking if
         // the code entered is correct or not.
